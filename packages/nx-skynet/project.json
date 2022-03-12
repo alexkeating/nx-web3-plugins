@@ -1,0 +1,54 @@
+{
+  "root": "packages/nx-skynet",
+  "sourceRoot": "packages/nx-skynet/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nx-skynet",
+        "main": "packages/nx-skynet/src/index.ts",
+        "tsConfig": "packages/nx-skynet/tsconfig.lib.json",
+        "assets": [
+          "packages/nx-skynet/*.md",
+          {
+            "input": "./packages/nx-skynet/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-skynet/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-skynet",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nx-skynet",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/nx-skynet/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/nx-skynet"],
+      "options": {
+        "jestConfig": "packages/nx-skynet/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

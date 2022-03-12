@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-skynet",
+  "version": "0.0.1",
+  "generators": {
+    "nx-skynet": {
+      "factory": "./src/generators/nx-skynet/generator",
+      "schema": "./src/generators/nx-skynet/schema.json",
+      "description": "nx-skynet generator"
+    }
+  }
+}
