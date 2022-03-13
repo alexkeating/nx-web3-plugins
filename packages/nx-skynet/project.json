@@ -54,8 +54,7 @@
       "executor": "ngx-deploy-npm:deploy",
       "options": {
         "tag": "alpha",
-        "access": "public",
-        "dryRun": true
+        "access": "public"
       }
     }
   },
