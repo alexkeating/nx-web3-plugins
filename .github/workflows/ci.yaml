@@ -14,6 +14,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16.x
+      - run: echo '//registry.npmjs.org/:_authToken=${{OTP}}' > /home/circleci/repo/.npmrc
+      - run: npm whoami
       - run: yarn install
       - run: npm install -g nx
       - run: nx deploy nx-skynet --otp ${{ secrets.OTP }}
