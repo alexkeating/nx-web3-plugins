@@ -48,6 +48,15 @@
         "jestConfig": "packages/nx-skynet/jest.config.js",
         "passWithNoTests": true
       }
+    },
+
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "tag": "alpha",
+        "access": "public",
+        "dryRun": true
+      }
     }
   },
   "tags": []
