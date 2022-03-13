@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16.x
-      - run: echo '//registry.npmjs.org/:_authToken=${{secrets.OTP}}' > /home/circleci/repo/.npmrc
+      - run: echo '//registry.npmjs.org/:_authToken=${{secrets.OTP}}' > .npmrc
       - run: npm whoami
       - run: yarn install
       - run: npm install -g nx
