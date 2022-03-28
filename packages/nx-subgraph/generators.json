@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "nx-subgraph",
+  "version": "0.0.1",
+  "generators": {
+    "nx-subgraph": {
+      "factory": "./src/generators/nx-subgraph/generator",
+      "schema": "./src/generators/nx-subgraph/schema.json",
+      "description": "nx-subgraph generator"
+    }
+  }
+}

@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@daohaus/nx-subgraph": ["packages/nx-subgraph/src/index.ts"],
       "daohaus/nx-skynet": ["packages/nx-skynet/src/index.ts"]
     }
   },

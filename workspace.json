@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "nx-skynet": "packages/nx-skynet",
-    "nx-skynet-e2e": "e2e/nx-skynet-e2e"
+    "nx-skynet-e2e": "e2e/nx-skynet-e2e",
+    "nx-subgraph": "packages/nx-subgraph",
+    "nx-subgraph-e2e": "e2e/nx-subgraph-e2e"
   }
 }
