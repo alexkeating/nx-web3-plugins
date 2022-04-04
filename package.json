@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "@actions/exec": "^1.1.1",
     "@skynetlabs/skynet-nodejs": "^2.5.0",
     "tslib": "^2.0.0"
   },
