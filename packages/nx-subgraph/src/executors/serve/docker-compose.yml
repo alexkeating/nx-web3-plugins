@@ -17,7 +17,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'rinkeby:https://rinkeby.infura.io/v3/831f78c5b26e405fbd835206400b04ff'
+      ethereum: 'rinkeby:https://0.0.0.0:8545'
       GRAPH_LOG: debug
   ipfs:
     image: ipfs/go-ipfs:v0.4.23
