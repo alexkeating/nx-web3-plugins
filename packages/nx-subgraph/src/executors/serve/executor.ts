@@ -83,11 +83,14 @@ export default async function serveExecutor(
       error: 'Failed to build subgraph',
     };
   }
-  // TODO: need the local crendentials to connect 
-	// to deploy to other networks
+  // TODO: need the local crendentials to connect
+  // to deploy to other networks
   const deployResp = await runExecutor(
     { project: context.projectName, target: 'deploy' },
-    {},
+    {
+      ipfs: 'http://localhost:5001',
+      node: 'http://127.0.0.1:8020',
+    },
     context
   );
   if (!deployResp[0].success) {

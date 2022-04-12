@@ -4,6 +4,15 @@
   "title": "Create executor",
   "description": "",
   "type": "object",
-  "properties": {},
-  "required": []
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the subgraph you are trying to create"
+    },
+    "node": {
+      "type": "string",
+      "description": "The uri to the node to create the subgraph on"
+    }
+  },
+  "required": ["name", "node"]
 }
