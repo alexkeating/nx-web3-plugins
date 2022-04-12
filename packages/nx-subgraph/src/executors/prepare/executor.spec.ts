@@ -1,7 +1,7 @@
-import { CreateExecutorSchema } from './schema';
+import { BuildExecutorSchema } from './schema';
 import executor from './executor';
 
-const options: CreateExecutorSchema = { name: 'here', node: 'there' };
+const options: BuildExecutorSchema = {};
 
 describe('Build Executor', () => {
   it('can run', async () => {
