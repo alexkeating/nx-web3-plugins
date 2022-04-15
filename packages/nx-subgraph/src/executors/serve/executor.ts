@@ -99,7 +99,6 @@ export default async function serveExecutor(
       error: 'Failed to build subgraph',
     };
   }
-
   // then deploy locally
   return {
     success: true,
