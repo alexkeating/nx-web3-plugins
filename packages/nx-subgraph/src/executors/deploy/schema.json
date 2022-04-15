@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Deploy executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "subgraph": {
+      "type": "string",
+      "description": "The name of the subgraph you are trying to create"
+    },
+    "node": {
+      "type": "string",
+      "description": "The uri to the node to create the subgraph on"
+    },
+    "ipfs": {
+      "type": "string",
+      "description": "The uri to the ipfs node for the subgraph"
+    }
+  },
+  "required": ["subgraph", "node", "ipfs"]
+}
