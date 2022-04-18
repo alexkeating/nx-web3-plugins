@@ -8,6 +8,7 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   console.log('Executor ran for Deploy', options);
+  console.log('Context', context);
   const codegenCode = await exec(`graph codegen ${context.cwd}/subgraph.yaml`);
   if (codegenCode !== 0) {
     return {
