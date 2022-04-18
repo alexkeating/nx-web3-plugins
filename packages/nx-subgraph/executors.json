@@ -5,6 +5,26 @@
       "implementation": "./src/executors/build/executor",
       "schema": "./src/executors/build/schema.json",
       "description": "build executor"
+    },
+    "create": {
+      "implementation": "./src/executors/create/executor",
+      "schema": "./src/executors/create/schema.json",
+      "description": "create subgraph executor"
+    },
+    "deploy": {
+      "implementation": "./src/executors/deploy/executor",
+      "schema": "./src/executors/deploy/schema.json",
+      "description": "deploy subgraph executor"
+    },
+    "prepare": {
+      "implementation": "./src/executors/prepare/executor",
+      "schema": "./src/executors/prepare/schema.json",
+      "description": "prepare subgraph executor"
+    },
+    "serve": {
+      "implementation": "./src/executors/serve/executor",
+      "schema": "./src/executors/serve/schema.json",
+      "description": "serve subgraph executor"
     }
   }
 }
