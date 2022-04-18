@@ -6,7 +6,7 @@
   "type": "object",
   "properties": {
     "daemonMode": {
-      "type": "string",
+      "type": "boolean",
       "description": "Have the local subgraph node run in daemonMode"
     }
   },
