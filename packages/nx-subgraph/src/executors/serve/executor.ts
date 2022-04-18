@@ -72,17 +72,17 @@ export default async function serveExecutor(
   }
   // build
   // Figure out how to add watching
-  const resp = await runExecutor(
-    { project: context.projectName, target: 'build' },
-    {},
-    context
-  );
-  if (!resp[0].success) {
-    return {
-      success: false,
-      error: 'Failed to build subgraph',
-    };
-  }
+  // const resp = await runExecutor(
+  //   { project: context.projectName, target: 'build' },
+  //   {},
+  //   context
+  // );
+  // if (!resp[0].success) {
+  //   return {
+  //     success: false,
+  //     error: 'Failed to build subgraph',
+  //   };
+  // }
   // TODO: need the local crendentials to connect
   // to deploy to other networks
   const deployResp = await runExecutor(
