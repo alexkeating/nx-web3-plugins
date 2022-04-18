@@ -4,6 +4,11 @@
   "title": "Serve executor",
   "description": "",
   "type": "object",
-  "properties": {},
-  "required": []
+  "properties": {
+    "daemonMode": {
+      "type": "string",
+      "description": "Have the local subgraph node run in daemonMode"
+    }
+  },
+  "required": ["daemonMode"]
 }

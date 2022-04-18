@@ -36,7 +36,6 @@ const isFreePort = (
 const checkComposePorts = async (ports: number[]) => {
   for (const port of ports) {
     const [, , free] = await isFreePort(port);
-    console.log(`Port is free ${free}`);
     if (!free) {
       return { free: false, port: port };
     }
@@ -53,17 +52,18 @@ export default async function serveExecutor(
   context: ExecutorContext
 ) {
   console.log('Executor ran for Deploy', options);
+  const daemon = options.daemonMode === true ? '-d' : '';
   const freePorts = await checkComposePorts([
     5432, 5001, 8000, 8001, 8020, 8030, 8040,
   ]);
   if (!freePorts.free) {
-    throw new Error(`Ports are not open ${freePorts.port}`);
+    throw new Error(`Ports ${freePorts.port} is not open`);
   }
   const composePath = path.join(__dirname, './docker-compose.yml');
 
   // TODO: change p
   const output = await getExecOutput(
-    `docker compose -p ${context.root} -f ${composePath} up`
+    `docker compose ${daemon} -p ${context.root} -f ${composePath} up`
   );
   if (output.exitCode !== 0) {
     return {
