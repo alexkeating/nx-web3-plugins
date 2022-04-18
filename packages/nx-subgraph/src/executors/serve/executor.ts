@@ -53,6 +53,9 @@ export default async function serveExecutor(
 ) {
   console.log('Executor ran for Deploy', options);
   const daemon = options.daemonMode === true ? '-d' : '';
+  const alreadyRunning = await getExecOutput(`docker ls `);
+  console.log(alreadyRunning.stdout);
+
   const freePorts = await checkComposePorts([
     5432, 5001, 8000, 8001, 8020, 8030, 8040,
   ]);
