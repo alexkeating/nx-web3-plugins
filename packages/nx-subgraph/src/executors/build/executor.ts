@@ -9,18 +9,14 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for Deploy', options);
   console.log('Context', context);
-  const codegenCode = await exec(
-    `graph codegen ${context.cwd}/${context.projectName}/subgraph.yaml`
-  );
+  const codegenCode = await exec(`graph codegen ${options.subgraphConfigPath}`);
   if (codegenCode !== 0) {
     return {
       success: false,
       exitCode: codegenCode,
     };
   }
-  const buildCode = await exec(
-    `graph build ${context.cwd}/${context.projectName}/subgraph.yaml`
-  );
+  const buildCode = await exec(`graph build ${options.subgraphConfigPath}`);
   if (buildCode !== 0) {
     return {
       success: false,
