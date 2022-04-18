@@ -36,6 +36,7 @@ const isFreePort = (
 const checkComposePorts = async (ports: number[]) => {
   for (const port of ports) {
     const free = await isFreePort(port);
+    console.log(`Port is free ${free}`);
     if (!free) {
       return { free: false, port: port };
     }
