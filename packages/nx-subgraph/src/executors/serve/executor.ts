@@ -2,6 +2,7 @@ import { ServeExecutorSchema } from './schema';
 import { ExecutorContext, runExecutor } from '@nrwl/devkit';
 import { getExecOutput } from '@actions/exec';
 import * as net from 'net';
+import * as path from 'path';
 
 /**
  * Check if a port is free on a certain host
@@ -60,9 +61,11 @@ export default async function serveExecutor(
       error: `Ports are not open ${freePorts.port}`,
     };
   }
+  const composePath = path.join(__dirname, './docker-compose.yml');
+
   // TODO: change p
   const output = await getExecOutput(
-    `docker compose -p ${context.root} -f ./docker-compose.yml up`
+    `docker compose -p ${context.root} -f ${composePath} up`
   );
   if (output.exitCode !== 0) {
     return {
