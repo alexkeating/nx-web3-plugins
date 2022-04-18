@@ -57,10 +57,7 @@ export default async function serveExecutor(
     5432, 5001, 8000, 8001, 8020, 8030, 8040,
   ]);
   if (!freePorts.free) {
-    return {
-      success: false,
-      error: `Ports are not open ${freePorts.port}`,
-    };
+    throw new Error(`Ports are not open ${freePorts.port}`);
   }
   const composePath = path.join(__dirname, './docker-compose.yml');
 
