@@ -25,6 +25,11 @@
       "implementation": "./src/executors/serve/executor",
       "schema": "./src/executors/serve/schema.json",
       "description": "serve subgraph executor"
+    },
+    "stop": {
+      "implementation": "./src/executors/stop/executor",
+      "schema": "./src/executors/stop/schema.json",
+      "description": "stop subgraph executor"
     }
   }
 }
