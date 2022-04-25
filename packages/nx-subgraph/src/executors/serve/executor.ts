@@ -62,7 +62,7 @@ export default async function serveExecutor(
   if (!freePorts.free) {
     throw new Error(`Ports ${freePorts.port} is not open`);
   }
-  const composePath = path.join(__dirname, './docker-compose.yml');
+  const composePath = options.composePath;
 
   // TODO: change p
   const output = await getExecOutput(
@@ -103,7 +103,7 @@ export default async function serveExecutor(
   //     error: 'Failed to build subgraph',
   //   };
   // }
-	// Deploy separately
+  // Deploy separately
   // then deploy locally
   return {
     success: true,

@@ -1,3 +1,4 @@
 export interface ServeExecutorSchema {
-	daemonMode: boolean,
+  daemonMode: boolean;
+  composePath: string;
 }
