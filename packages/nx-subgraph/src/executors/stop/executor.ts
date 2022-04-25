@@ -10,7 +10,7 @@ export default async function runExecutor(
 ) {
   const parsedPath = path.parse(__dirname);
   const composePath = path.join(parsedPath.dir, 'serve', 'docker-compose.yml');
-  const codegenCode = await exec(`docker compose stop -f ${composePath}`);
+  const codegenCode = await exec(`docker compose stop`);
   if (codegenCode !== 0) {
     throw new Error(`Failed to stop subgraph node ${codegenCode}`);
   }
