@@ -66,7 +66,7 @@ export default async function serveExecutor(
 
   // TODO: change p
   const output = await getExecOutput(
-    `docker compose -p ${context.root} -f ${composePath} up ${daemon} `
+    `docker compose -f ${composePath} up ${daemon} `
   );
   if (output.exitCode !== 0) {
     return {
