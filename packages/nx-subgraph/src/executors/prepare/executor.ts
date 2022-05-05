@@ -11,11 +11,7 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   console.log('Executor ran for prepare', options);
-  const configContents = readFileSync(
-    resolve(`${context.cwd}/manifests`, 'config.yaml'),
-    'utf-8'
-  );
-  const data = safeLoad(configContents);
+  const data = resolve(`${context.cwd}/manifests`, 'deploy-prep.js');
   prepareFile(data, options.networks, context.cwd);
   return {
     success: true,

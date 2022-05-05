@@ -7,6 +7,7 @@ import {
   offsetFromRoot,
   Tree,
 } from '@nrwl/devkit';
+import { getExecOutput } from '@actions/exec';
 import * as path from 'path';
 import { NxSubgraphGeneratorSchema } from './schema';
 
@@ -55,7 +56,14 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
+// graph init \
+//   --product subgraph-studio
+//   --from-contract <CONTRACT_ADDRESS> \
+//   [--network <ETHEREUM_NETWORK>] \
+//   [--abi <FILE>] \
+//   <SUBGRAPH_SLUG> [<DIRECTORY>]
 export default async function (tree: Tree, options: NxSubgraphGeneratorSchema) {
+  const product = options.product || 'subgraph-studio';
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
@@ -68,6 +76,21 @@ export default async function (tree: Tree, options: NxSubgraphGeneratorSchema) {
     },
     tags: normalizedOptions.parsedTags,
   });
-  addFiles(tree, normalizedOptions);
+  // addFiles(tree, normalizedOptions);
+  const output = await getExecOutput(
+    `graph init \
+		  --product ${product} \
+			--from-contract ${normalizedOptions.contract} \
+			--network ${normalizedOptions.network} \
+			--abi ${normalizedOptions.abi} \
+			${normalizedOptions.name} ${normalizedOptions.directory}
+		`
+  );
+  if (output.exitCode !== 0) {
+    return {
+      success: false,
+      error: output.stderr,
+    };
+  }
   await formatFiles(tree);
 }
