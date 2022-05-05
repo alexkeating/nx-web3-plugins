@@ -1,0 +1,3 @@
+[submodule "packages/foundry-example/lib/solmate"]
+	path = packages/foundry-example/lib/solmate
+	url = https://github.com/Rari-capital/solmate
