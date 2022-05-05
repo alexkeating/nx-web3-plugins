@@ -71,13 +71,7 @@ export default async function (tree: Tree, options: NxFoundryGeneratorSchema) {
       install: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: `forge install --root ${normalizedOptions.projectRoot}`,
-        },
-      },
-      update: {
-        executor: '@nrwl/workspace:run-commands',
-        options: {
-          command: `forge update --root ${normalizedOptions.projectRoot}`,
+          command: `forge install --root ${normalizedOptions.projectRoot} {args.package}`,
         },
       },
       test: {

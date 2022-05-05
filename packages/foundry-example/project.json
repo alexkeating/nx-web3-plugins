@@ -6,37 +6,31 @@
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "forge build"
+        "command": "forge build --root packages/foundry-example"
       }
     },
     "install": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "forge install --root packages/foundry-example"
-      }
-    },
-    "update": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "forge update"
+        "command": "forge install --root packages/foundry-example {args.package}"
       }
     },
     "test": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "forge test"
+        "command": "forge test --root packages/foundry-example"
       }
     },
     "trace": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "forge test -vvvv"
+        "command": "forge test -vvvv --root packages/foundry-example"
       }
     },
     "clean": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "forge clean"
+        "command": "forge clean --root packages/foundry-example"
       }
     }
   },
