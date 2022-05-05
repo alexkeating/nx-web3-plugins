@@ -12,7 +12,7 @@
     "install": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "forge install --root packages/foundry-example {args.package}"
+        "command": "forge install --root packages/foundry-example {args.package} --no-git"
       }
     },
     "test": {

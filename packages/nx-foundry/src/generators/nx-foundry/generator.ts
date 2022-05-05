@@ -7,6 +7,7 @@ import {
   offsetFromRoot,
   Tree,
 } from '@nrwl/devkit';
+import { getExecOutput } from '@actions/exec';
 import * as path from 'path';
 import { NxFoundryGeneratorSchema } from './schema';
 
@@ -71,7 +72,7 @@ export default async function (tree: Tree, options: NxFoundryGeneratorSchema) {
       install: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: `forge install --root ${normalizedOptions.projectRoot} {args.package}`,
+          command: `forge install --root ${normalizedOptions.projectRoot} {args.package} --no-git`,
         },
       },
       test: {
@@ -96,5 +97,12 @@ export default async function (tree: Tree, options: NxFoundryGeneratorSchema) {
     tags: normalizedOptions.parsedTags,
   });
   addFiles(tree, normalizedOptions);
+  await getExecOutput(
+    `forge install --root ${normalizedOptions.projectRoot} Rari-capital/solmate --no-git`
+  );
+  await getExecOutput(
+    `forge install --root ${normalizedOptions.projectRoot} dapphub/ds-test --no-git`
+  );
+
   await formatFiles(tree);
 }
