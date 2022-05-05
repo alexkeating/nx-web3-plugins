@@ -59,43 +59,43 @@ export default async function (tree: Tree, options: NxFoundryGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
-    projectType: 'library',
+    projectType: 'application',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       build: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: 'forge build',
+          command: `forge build --root ${normalizedOptions.projectRoot}`,
         },
       },
       install: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: 'forge install',
+          command: `forge install --root ${normalizedOptions.projectRoot}`,
         },
       },
       update: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: 'forge update',
+          command: `forge update --root ${normalizedOptions.projectRoot}`,
         },
       },
       test: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: 'forge test',
+          command: `forge test --root ${normalizedOptions.projectRoot}`,
         },
       },
       trace: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: 'forge test -vvvv',
+          command: `forge test -vvvv --root ${normalizedOptions.projectRoot}`,
         },
       },
       clean: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: 'forge clean',
+          command: `forge clean --root ${normalizedOptions.projectRoot}`,
         },
       },
     },

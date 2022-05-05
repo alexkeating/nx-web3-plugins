@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "foundry-example": "packages/foundry-example",
     "nx-foundry": "packages/nx-foundry",
     "nx-foundry-e2e": "e2e/nx-foundry-e2e",
     "nx-skynet": "packages/nx-skynet",

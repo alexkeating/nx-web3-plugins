@@ -1,0 +1,44 @@
+{
+  "root": "packages/foundry-example",
+  "projectType": "application",
+  "sourceRoot": "packages/foundry-example/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge build"
+      }
+    },
+    "install": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge install --root packages/foundry-example"
+      }
+    },
+    "update": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge update"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge test"
+      }
+    },
+    "trace": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge test -vvvv"
+      }
+    },
+    "clean": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge clean"
+      }
+    }
+  },
+  "tags": []
+}
