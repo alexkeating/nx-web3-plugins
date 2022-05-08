@@ -76,7 +76,7 @@ export default async function (tree: Tree, options: NxFoundryGeneratorSchema) {
       deployLocal: {
         executor: '@nrwl/workspace:run-commands',
         options: {
-          command: `forge create --rpc-url http://127.0.0.1:8545/ -i src/${normalizedOptions.className}:Contract`,
+          command: `forge create --rpc-url http://127.0.0.1:8545/ -i src/${normalizedOptions.className}.sol:Contract`,
 
           cwd: `./${normalizedOptions.projectRoot}`,
         },
