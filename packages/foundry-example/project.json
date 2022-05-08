@@ -15,6 +15,14 @@
         "command": "forge install --root packages/foundry-example {args.package} --no-git"
       }
     },
+    "deployLocal": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "RUST_BACKTRACE=full forge create --rpc-url http://127.0.0.1:8545/ -i src/FoundryExample.sol:Contract",
+
+        "cwd": "./packages/foundry-example"
+      }
+    },
     "test": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

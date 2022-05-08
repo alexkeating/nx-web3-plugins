@@ -16,12 +16,10 @@ interface NormalizedSchema extends NxFoundryGeneratorSchema {
   projectRoot: string;
   projectDirectory: string;
   parsedTags: string[];
+  className: string;
 }
 
-function normalizeOptions(
-  tree: Tree,
-  options: NxFoundryGeneratorSchema
-): NormalizedSchema {
+function normalizeOptions(tree: Tree, options: NxFoundryGeneratorSchema) {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
@@ -34,6 +32,7 @@ function normalizeOptions(
 
   return {
     ...options,
+    ...names(options.name),
     projectName,
     projectRoot,
     projectDirectory,
@@ -44,7 +43,6 @@ function normalizeOptions(
 function addFiles(tree: Tree, options: NormalizedSchema) {
   const templateOptions = {
     ...options,
-    ...names(options.name),
     offsetFromRoot: offsetFromRoot(options.projectRoot),
     template: '',
   };
@@ -75,6 +73,15 @@ export default async function (tree: Tree, options: NxFoundryGeneratorSchema) {
           command: `forge install --root ${normalizedOptions.projectRoot} {args.package} --no-git`,
         },
       },
+      deployLocal: {
+        executor: '@nrwl/workspace:run-commands',
+        options: {
+          command: `forge create --rpc-url http://127.0.0.1:8545/ -i src/${normalizedOptions.className}:Contract`,
+
+          cwd: `./${normalizedOptions.projectRoot}`,
+        },
+      },
+
       test: {
         executor: '@nrwl/workspace:run-commands',
         options: {
