@@ -1,1 +1,4 @@
-export interface ServeExecutorSchema {} // eslint-disable-line
+export interface ServeExecutorSchema {
+  daemonMode: boolean;
+  composePath: string;
+}

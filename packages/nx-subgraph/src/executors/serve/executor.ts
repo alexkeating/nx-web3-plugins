@@ -2,6 +2,7 @@ import { ServeExecutorSchema } from './schema';
 import { ExecutorContext, runExecutor } from '@nrwl/devkit';
 import { getExecOutput } from '@actions/exec';
 import * as net from 'net';
+import * as path from 'path';
 
 /**
  * Check if a port is free on a certain host
@@ -34,7 +35,7 @@ const isFreePort = (
 
 const checkComposePorts = async (ports: number[]) => {
   for (const port of ports) {
-    const free = await isFreePort(port);
+    const [, , free] = await isFreePort(port);
     if (!free) {
       return { free: false, port: port };
     }
@@ -51,18 +52,21 @@ export default async function serveExecutor(
   context: ExecutorContext
 ) {
   console.log('Executor ran for Deploy', options);
+  const daemon = options.daemonMode === true ? '-d' : '';
+  const alreadyRunning = await getExecOutput(`docker compose ls `);
+  console.log(alreadyRunning.stdout);
+
   const freePorts = await checkComposePorts([
     5432, 5001, 8000, 8001, 8020, 8030, 8040,
   ]);
   if (!freePorts.free) {
-    return {
-      success: false,
-      error: `Ports are not open ${freePorts.port}`,
-    };
+    throw new Error(`Ports ${freePorts.port} is not open`);
   }
+  const composePath = options.composePath;
+
   // TODO: change p
   const output = await getExecOutput(
-    `docker compose -p ${context.root} -f ./docker-compose.yml up`
+    `docker compose -f ${composePath} up ${daemon} `
   );
   if (output.exitCode !== 0) {
     return {
@@ -72,33 +76,34 @@ export default async function serveExecutor(
   }
   // build
   // Figure out how to add watching
-  const resp = await runExecutor(
-    { project: context.projectName, target: 'build' },
-    {},
-    context
-  );
-  if (!resp[0].success) {
-    return {
-      success: false,
-      error: 'Failed to build subgraph',
-    };
-  }
+  // const resp = await runExecutor(
+  //   { project: context.projectName, target: 'build' },
+  //   {},
+  //   context
+  // );
+  // if (!resp[0].success) {
+  //   return {
+  //     success: false,
+  //     error: 'Failed to build subgraph',
+  //   };
+  // }
   // TODO: need the local crendentials to connect
   // to deploy to other networks
-  const deployResp = await runExecutor(
-    { project: context.projectName, target: 'deploy' },
-    {
-      ipfs: 'http://localhost:5001',
-      node: 'http://127.0.0.1:8020',
-    },
-    context
-  );
-  if (!deployResp[0].success) {
-    return {
-      success: false,
-      error: 'Failed to build subgraph',
-    };
-  }
+  // const deployResp = await runExecutor(
+  //   { project: context.projectName, target: 'deploy' },
+  //   {
+  //     ipfs: 'http://localhost:5001',
+  //     node: 'http://127.0.0.1:8020',
+  //   },
+  //   context
+  // );
+  // if (!deployResp[0].success) {
+  //   return {
+  //     success: false,
+  //     error: 'Failed to build subgraph',
+  //   };
+  // }
+  // Deploy separately
   // then deploy locally
   return {
     success: true,

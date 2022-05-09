@@ -5,14 +5,33 @@
   "title": "",
   "type": "object",
   "properties": {
-    "name": {
+    "product": {
       "type": "string",
-      "description": "",
+      "description": "Whether a subgraph is hosted-service or subgraph-studio",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "What service would you like to use?"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the subgraph",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What name would you like for the subgraph?"
+    },
+    "contract": {
+      "type": "number",
+      "description": "The subgraph contract address",
+      "alias": "c"
+    },
+    "network": {
+      "type": "string",
+      "description": "The network to generate the subgraph",
+      "alias": "n"
     },
     "tags": {
       "type": "string",
@@ -25,5 +44,5 @@
       "alias": "d"
     }
   },
-  "required": ["name"]
+  "required": ["name", "product", "contract", "network"]
 }

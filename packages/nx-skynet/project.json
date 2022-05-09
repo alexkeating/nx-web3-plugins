@@ -23,11 +23,6 @@
           },
           {
             "input": "./packages/nx-skynet",
-            "glob": "generators.json",
-            "output": "."
-          },
-          {
-            "input": "./packages/nx-skynet",
             "glob": "executors.json",
             "output": "."
           }

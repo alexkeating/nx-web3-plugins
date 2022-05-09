@@ -1,0 +1,54 @@
+{
+  "root": "packages/nx-foundry",
+  "sourceRoot": "packages/nx-foundry/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nx-foundry",
+        "main": "packages/nx-foundry/src/index.ts",
+        "tsConfig": "packages/nx-foundry/tsconfig.lib.json",
+        "assets": [
+          "packages/nx-foundry/*.md",
+          {
+            "input": "./packages/nx-foundry/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-foundry/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/nx-foundry",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nx-foundry",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/nx-foundry/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/nx-foundry"],
+      "options": {
+        "jestConfig": "packages/nx-foundry/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

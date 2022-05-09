@@ -4,6 +4,15 @@
   "title": "Serve executor",
   "description": "",
   "type": "object",
-  "properties": {},
-  "required": []
+  "properties": {
+    "daemonMode": {
+      "type": "boolean",
+      "description": "Have the local subgraph node run in daemonMode"
+    },
+    "composePath": {
+      "type": "string",
+      "description": "Path to docker-compose path"
+    }
+  },
+  "required": ["daemonMode", "composePath"]
 }
