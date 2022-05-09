@@ -12,7 +12,7 @@ export default async function runExecutor(
 ) {
   console.log('Executor ran for prepare', options);
   const data = resolve(`${context.cwd}/manifests`, 'deploy-prep.js');
-  prepareFile(data, options.networks, context.cwd);
+  // prepareFile(data, options.networks, context.cwd);
   return {
     success: true,
   };

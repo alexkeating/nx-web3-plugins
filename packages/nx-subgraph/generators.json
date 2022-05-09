@@ -3,7 +3,7 @@
   "name": "nx-subgraph",
   "version": "0.0.1",
   "generators": {
-    "nx-subgraph": {
+    "generator": {
       "factory": "./src/generators/nx-subgraph/generator",
       "schema": "./src/generators/nx-subgraph/schema.json",
       "description": "nx-subgraph generator"

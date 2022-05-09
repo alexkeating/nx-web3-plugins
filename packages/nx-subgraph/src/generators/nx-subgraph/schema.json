@@ -24,7 +24,7 @@
       "x-prompt": "What name would you like for the subgraph?"
     },
     "contract": {
-      "type": "string",
+      "type": "number",
       "description": "The subgraph contract address",
       "alias": "c"
     },
@@ -32,11 +32,6 @@
       "type": "string",
       "description": "The network to generate the subgraph",
       "alias": "n"
-    },
-    "abi": {
-      "type": "string",
-      "description": "The abi of the contract for the subgraph",
-      "alias": "a"
     },
     "tags": {
       "type": "string",

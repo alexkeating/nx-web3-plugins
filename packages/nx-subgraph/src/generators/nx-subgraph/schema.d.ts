@@ -1,9 +1,8 @@
 export interface NxSubgraphGeneratorSchema {
-  product?: string;
+  product: string;
   name: string;
-  contract: string;
+  contract: number;
   network: string;
-  abi: string;
   directory: string;
-  tags: string;
+  tags?: string;
 }
