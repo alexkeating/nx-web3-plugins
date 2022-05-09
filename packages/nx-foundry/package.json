@@ -1,5 +1,5 @@
 {
-  "name": "@daohaus/nx-foundry",
+  "name": "@alexkeating/nx-foundry",
   "version": "0.0.2",
   "main": "src/index.js",
   "generators": "./generators.json",
