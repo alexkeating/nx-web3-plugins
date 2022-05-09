@@ -48,6 +48,13 @@
         "jestConfig": "packages/nx-foundry/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "deploy": {
+      "executor": "ngx-deploy-npm:deploy",
+      "options": {
+        "tag": "alpha",
+        "access": "public"
+      }
     }
   },
   "tags": []
