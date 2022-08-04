@@ -9,6 +9,7 @@
         "outputPath": "dist/packages/nx-skynet",
         "main": "packages/nx-skynet/src/index.ts",
         "tsConfig": "packages/nx-skynet/tsconfig.lib.json",
+        "generatePackageJson": true,
         "assets": [
           "packages/nx-skynet/*.md",
           {
@@ -48,7 +49,6 @@
     "deploy": {
       "executor": "ngx-deploy-npm:deploy",
       "options": {
-        "tag": "alpha",
         "access": "public"
       }
     }

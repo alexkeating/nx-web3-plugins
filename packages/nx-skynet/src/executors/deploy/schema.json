@@ -35,6 +35,10 @@
     "skynetJwtVarName": {
       "type": "string",
       "description": "The environment variable name for portal account JWT used for associating uploads with a specific account. Also used to allow uploads larger than 1GB."
+    },
+    "skynetApiKeyVarName": {
+      "type": "string",
+      "description": "The environment variable name for portal account api key used for associating uploads with a specific account. Also used to allow uploads larger than 1GB."
     }
   },
   "required": ["uploadDir"]

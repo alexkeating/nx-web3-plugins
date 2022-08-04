@@ -1,12 +1,20 @@
 import { DeployExecutorSchema } from './schema';
 import { SkynetClient, genKeyPairFromSeed } from '@skynetlabs/skynet-nodejs';
 
-function prepareClientOptions(skynetJwt: string | undefined) {
-  const options = {} as { customCookie: string };
+function prepareClientOptions(
+  skynetJwt: string | undefined,
+  skynetApi: string | undefined
+) {
+  const options = {} as { customCookie: string; skynetApiKey: string };
 
   if (skynetJwt) {
     // transform skynet-jwt into a cookie accepted format
     options.customCookie = `skynet-jwt=${skynetJwt}`;
+    return options;
+  }
+  if (skynetApi) {
+    options.skynetApiKey = skynetApi;
+    return options;
   }
 
   return options;
@@ -35,11 +43,12 @@ function prepareUploadOptions(
 
 export default async function runExecutor(options: DeployExecutorSchema) {
   const skynetJwt = process.env[options.skynetJwtVarName];
+  const skynetApiKey = process.env[options.skynetApiKeyVarName];
   const registrySeed = process.env[options.registrySeedVarName];
   try {
     const skynetClient = new SkynetClient(
       options?.portalUrl,
-      prepareClientOptions(skynetJwt)
+      prepareClientOptions(skynetJwt, skynetApiKey)
     );
     const skylink = await skynetClient.uploadDirectory(
       options.uploadDir,
@@ -62,7 +71,7 @@ export default async function runExecutor(options: DeployExecutorSchema) {
         const dataKey = options.registryDataKey;
         const { publicKey, privateKey } = genKeyPairFromSeed(seed);
 
-        const [entryUrl, resolverSkylink] = await Promise.all([
+        const [entryUrl, resolverSkylink, dataLink] = await Promise.all([
           skynetClient.registry.getEntryUrl(publicKey, dataKey),
           skynetClient.registry.getEntryLink(publicKey, dataKey),
           skynetClient.db.setDataLink(privateKey, dataKey, skylink),
@@ -73,6 +82,7 @@ export default async function runExecutor(options: DeployExecutorSchema) {
         console.log(`Registry entry updated: ${entryUrl}`);
         console.log(`Resolver Skylink Url: ${resolverUrl}`);
         console.log(`Resolver Skylink: ${resolverSkylink}`);
+        console.log(`Resolver data link: ${dataLink}`);
       } catch (error) {
         console.log(`Failed to update registry entry: ${error.message}`);
       }
