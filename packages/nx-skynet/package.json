@@ -1,9 +1,6 @@
 {
   "name": "@alexkeating/nx-skynet",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "src/index.js",
-  "executors": "./executors.json",
-  "dependencies": {
-    "@skynetlabs/skynet-nodejs": "^2.5.0"
-  }
+  "executors": "./executors.json"
 }

@@ -6,4 +6,5 @@ export interface DeployExecutorSchema {
   registryDataKey: string;
   portalUrl?: string;
   skynetJwtVarName?: string;
+  skynetApiKeyVarName?: string;
 }
