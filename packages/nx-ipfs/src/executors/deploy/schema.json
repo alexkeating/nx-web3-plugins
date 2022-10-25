@@ -9,11 +9,11 @@
     "properties": {
       "cloudflareZoneID": {
         "type": "string",
-        "description": "The zone id of the domain"
+        "description": "Then name of the environment variable for the zone id of the domain"
       },
       "cloudflareToken": {
         "type": "string",
-        "description": "A cloudflare api token"
+        "description": "Then name of the environment variable for a cloudflare api token"
       },
       "recordName": {
         "type": "string",
@@ -44,11 +44,11 @@
     },
     "pinataApiKey": {
       "type": "string",
-      "description": "Api key to interact with the pinata pinning service"
+      "description": "Name of the environment variable for the Api key to interact with the pinata pinning service"
     },
     "pinataSecretApiKey": {
       "type": "string",
-      "description": "Secret api key to interact with the pinata pinning service"
+      "description": "Name of the environment varaibale for the secret api key to interact with the pinata pinning service"
     },
     "cloudflare": {
       "$ref": "#/definitions/Cloudflare"

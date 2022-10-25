@@ -1,5 +1,5 @@
 {
-  "name": "@daohaus/nx-ipfs",
+  "name": "@alexkeating/nx-ipfs",
   "version": "0.0.1",
   "main": "src/index.js",
   "generators": "./generators.json",
