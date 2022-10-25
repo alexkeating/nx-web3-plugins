@@ -24,6 +24,7 @@ export default async function runExecutor(options: DeployExecutorSchema) {
         cloudflareZoneID: cloudflareZoneID,
         recordName: options.cloudflare.recordName,
         recordDomain: options.cloudflare.recordDomain,
+        cloudflareToken: cloudflareToken,
       });
       const body = await resp.json();
       if (options.verbose) {

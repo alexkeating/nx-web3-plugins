@@ -4,13 +4,21 @@ export const getDNSRecord = async ({
   cloudflareZoneID,
   recordName,
   recordDomain,
+  cloudflareToken,
 }: {
   cloudflareZoneID: string;
   recordName: string;
   recordDomain: string;
+  cloudflareToken: string;
 }) => {
   const resp = await fetch(
-    `https://api.cloudflare.com/client/v4/zones/${cloudflareZoneID}/dns_records?name=${recordName}.${recordDomain}`
+    `https://api.cloudflare.com/client/v4/zones/${cloudflareZoneID}/dns_records?name=${recordName}.${recordDomain}`,
+    {
+      headers: {
+        authorization: `Bearer ${cloudflareToken}`,
+        'Content-Type': 'application/json',
+      },
+    }
   );
   return resp;
 };
