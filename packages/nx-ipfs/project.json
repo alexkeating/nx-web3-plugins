@@ -10,6 +10,8 @@
         "main": "packages/nx-ipfs/src/index.ts",
         "tsConfig": "packages/nx-ipfs/tsconfig.lib.json",
         "generatePackageJson": true,
+        "updateBuildableProjectDepsInPackageJson": true,
+        "buildableProjectDepsInPackageJsonType": "dependencies",
         "assets": [
           "packages/nx-ipfs/*.md",
           {

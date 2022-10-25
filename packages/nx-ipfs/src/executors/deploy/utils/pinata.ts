@@ -28,7 +28,7 @@ function unpinHash(hashToUnpin, verbose, pinata) {
 }
 
 // Function to search for all old pins with the same name and unpin them if they are not the latest one
-function removeOldPinsSaving(hash, verbose, pinName, pinata) {
+const removeOldPinsSaving = async (hash, verbose, pinName, pinata) => {
   const metadataFilter = {
     name: pinName,
   };
@@ -38,22 +38,16 @@ function removeOldPinsSaving(hash, verbose, pinName, pinata) {
     pageOffset: 0,
     metadata: metadataFilter,
   };
-  pinata
-    .pinList(filters)
-    .then((result) => {
-      if (verbose) {
-        console.log(result);
-      }
-      result.rows.forEach((element) => {
-        if (element.ipfs_pin_hash != hash) {
-          unpinHash(element.ipfs_pin_hash, verbose, pinata);
-        }
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+  const result = await pinata.pinList(filters);
+  if (verbose) {
+    console.log(result);
+  }
+  result.rows.forEach((element) => {
+    if (element.ipfs_pin_hash != hash) {
+      unpinHash(element.ipfs_pin_hash, verbose, pinata);
+    }
+  });
+};
 
 // Deploying (pining) to IPFS using Pinata from file system
 export const deployPinata = async ({
@@ -84,9 +78,6 @@ export const deployPinata = async ({
 
   if (verbose) {
     console.log('workspace: ' + workspace);
-
-    const env = JSON.stringify(process.env);
-    console.log('env: ' + env);
   }
 
   // If path is absolute use it
@@ -103,9 +94,12 @@ export const deployPinata = async ({
   }
 
   // Connecting to Pinata
+  console.log(pinataSDK);
   const pinata = pinataSDK(apiKey, secretApiKey);
 
+  console.log(pinata);
   const result = await pinata.pinFromFS(sourcePath, options);
+  console.log(result);
 
   if (verbose) {
     console.log(result);
@@ -113,7 +107,7 @@ export const deployPinata = async ({
   }
 
   if (removeOld) {
-    removeOldPinsSaving(result.IpfsHash, verbose, pinName, pinata);
+    await removeOldPinsSaving(result.IpfsHash, verbose, pinName, pinata);
   }
 
   return result.IpfsHash;
