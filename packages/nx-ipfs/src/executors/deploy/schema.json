@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Deploy executor",
+  "description": "",
+  "type": "object",
+  "Cloudflare": {
+    "type": "object",
+    "properties": {
+      "cloudflareZoneID": {
+        "type": "string",
+        "description": "The zone id of the domain"
+      },
+      "cloudflareToken": {
+        "type": "string",
+        "description": "A cloudflare api token"
+      },
+      "recordName": {
+        "type": "string",
+        "description": "The name of the record"
+      },
+      "recordDomain": {
+        "type": "string",
+        "description": "The domain for the record"
+      }
+    }
+  },
+  "properties": {
+    "verbose": {
+      "type": "boolean",
+      "description": "a boolean that will cause the executor to emit extra logging"
+    },
+    "removeOldDeploy": {
+      "type": "boolean",
+      "description": "The executor will unpin the previous deploy"
+    },
+    "pinName": {
+      "type": "string",
+      "description": "Name used to identify your pinned data"
+    },
+    "uploadPath": {
+      "type": "string",
+      "description": "Path of directory to upload"
+    },
+    "pinataApiKey": {
+      "type": "string",
+      "description": "Api key to interact with the pinata pinning service"
+    },
+    "pinataSecretApiKey": {
+      "type": "string",
+      "description": "Secret api key to interact with the pinata pinning service"
+    },
+    "cloudflare": {
+      "$ref": "#/definitions/Cloudflare"
+    }
+  },
+  "required": []
+}

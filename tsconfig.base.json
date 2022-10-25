@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@alexkeating/nx-ipfs": ["packages/nx-ipfs/src/index.ts"],
       "@daohaus/nx-foundry": ["packages/nx-foundry/src/index.ts"],
       "@daohaus/nx-subgraph": ["packages/nx-subgraph/src/index.ts"],
       "daohaus/nx-skynet": ["packages/nx-skynet/src/index.ts"]
