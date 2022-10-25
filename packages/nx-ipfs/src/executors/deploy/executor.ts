@@ -26,6 +26,9 @@ export default async function runExecutor(options: DeployExecutorSchema) {
         recordDomain: options.cloudflare.recordDomain,
       });
       const body = await resp.json();
+      if (options.verbose) {
+        console.log(body);
+      }
       if (body.result_info.total_count === 0) {
         throw Error(
           `Pages Update: No record found. Follow Cloudflare setup instructions to add an initial IPFS record for ${options.cloudflare.recordName}`
