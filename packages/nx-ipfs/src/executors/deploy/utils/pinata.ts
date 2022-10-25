@@ -1,4 +1,3 @@
-import * as core from '@actions/core';
 import pinataSDK from '@pinata/sdk';
 import * as fsPath from 'path';
 
