@@ -93,12 +93,9 @@ export const deployPinata = async ({
   }
 
   // Connecting to Pinata
-  console.log(pinataSDK);
   const pinata = pinataSDK(apiKey, secretApiKey);
 
-  console.log(pinata);
   const result = await pinata.pinFromFS(sourcePath, options);
-  console.log(result);
 
   if (verbose) {
     console.log(result);

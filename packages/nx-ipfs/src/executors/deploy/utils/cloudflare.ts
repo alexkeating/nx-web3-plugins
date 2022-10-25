@@ -1,3 +1,5 @@
+import fetch from 'cross-fetch';
+
 export const getDNSRecord = async ({
   cloudflareZoneID,
   recordName,
