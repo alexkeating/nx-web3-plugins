@@ -4,24 +4,26 @@
   "title": "Deploy executor",
   "description": "",
   "type": "object",
-  "Cloudflare": {
-    "type": "object",
-    "properties": {
-      "cloudflareZoneID": {
-        "type": "string",
-        "description": "Then name of the environment variable for the zone id of the domain"
-      },
-      "cloudflareToken": {
-        "type": "string",
-        "description": "Then name of the environment variable for a cloudflare api token"
-      },
-      "recordName": {
-        "type": "string",
-        "description": "The name of the record"
-      },
-      "recordDomain": {
-        "type": "string",
-        "description": "The domain for the record"
+  "definitions": {
+    "Cloudflare": {
+      "type": "object",
+      "properties": {
+        "cloudflareZoneID": {
+          "type": "string",
+          "description": "Then name of the environment variable for the zone id of the domain"
+        },
+        "cloudflareToken": {
+          "type": "string",
+          "description": "Then name of the environment variable for a cloudflare api token"
+        },
+        "recordName": {
+          "type": "string",
+          "description": "The name of the record"
+        },
+        "recordDomain": {
+          "type": "string",
+          "description": "The domain for the record"
+        }
       }
     }
   },
