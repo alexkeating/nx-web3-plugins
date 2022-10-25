@@ -64,7 +64,6 @@ export const deployPinata = async ({
   apiKey: string;
   secretApiKey: string;
 }) => {
-  // Constructing Pinata options
   const options = {
     pinataMetadata: {
       name: pinName,
